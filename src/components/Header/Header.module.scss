@@ -1,0 +1,167 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba($white, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid $border-light;
+}
+
+.container {
+  @include container;
+  @include flex(row, center, space-between);
+  height: 72px;
+}
+
+.logo {
+  @include flex(row, center, flex-start);
+  gap: $spacing-2;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $primary;
+
+  .logoIcon {
+    width: 36px;
+    height: 36px;
+    background: $gradient-primary;
+    border-radius: $radius-lg;
+    @include flex(row, center, center);
+    color: $white;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.nav {
+  @include flex(row, center, center);
+  gap: $spacing-1;
+  background: $bg-light;
+  border-radius: $radius-full;
+  padding: $spacing-1;
+
+  @media (max-width: $breakpoint-lg) {
+    display: none;
+  }
+}
+
+.navLink {
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $text-secondary;
+  border-radius: $radius-full;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover,
+  &.active {
+    color: $primary;
+    background: $white;
+    box-shadow: $shadow-sm;
+  }
+}
+
+.actions {
+  @include flex(row, center, flex-end);
+  gap: $spacing-3;
+}
+
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  @include flex(row, center, center);
+  border-radius: $radius-full;
+  color: $text-primary;
+  transition: all 0.2s ease;
+  position: relative;
+  text-decoration: none;
+
+  &:hover {
+    background: $bg-light;
+    color: $primary;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background: $primary;
+  color: $white;
+  font-size: 10px;
+  font-weight: $font-weight-bold;
+  border-radius: $radius-full;
+  @include flex(row, center, center);
+  border: 2px solid $white;
+}
+
+.mobileMenuBtn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  @include flex(row, center, center);
+  border-radius: $radius-md;
+  background: none;
+  border: none;
+  color: $text-primary;
+
+  @media (max-width: $breakpoint-lg) {
+    display: flex;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.mobileMenu {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $white;
+  z-index: 999;
+  padding: $spacing-6;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    display: block;
+  }
+}
+
+.mobileNavLink {
+  display: block;
+  padding: $spacing-4 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+  border-bottom: 1px solid $border-light;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary;
+  }
+}
