@@ -1,0 +1,169 @@
+@use 'variables' as *;
+
+@mixin flex($direction: row, $align: center, $justify: flex-start, $wrap: nowrap) {
+display: flex;
+flex-direction: $direction;
+align-items: $align;
+justify-content: $justify;
+flex-wrap: $wrap;
+}
+
+@mixin grid($columns: 1, $gap: $spacing-4) {
+display: grid;
+grid-template-columns: repeat($columns, 1fr);
+gap: $gap;
+}
+
+@mixin container {
+max-width: $container-max;
+margin: 0 auto;
+padding: 0 $container-padding;
+}
+
+@mixin section-padding {
+padding: $spacing-20 0;
+
+@media (max-width: $breakpoint-lg) {
+  padding: $spacing-16 0;
+}
+
+@media (max-width: $breakpoint-md) {
+  padding: $spacing-12 0;
+}
+}
+
+@mixin btn-base {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: $spacing-2;
+padding: $spacing-3 $spacing-6;
+font-size: $font-size-sm;
+font-weight: $font-weight-medium;
+border-radius: $radius-lg;
+border: none;
+cursor: pointer;
+transition: all 0.2s ease;
+text-decoration: none;
+}
+
+@mixin btn-primary {
+@include btn-base;
+background: $gradient-primary;
+color: $white;
+
+&:hover {
+  transform: translateY(-1px);
+  box-shadow: $shadow-md;
+}
+}
+
+@mixin btn-outline {
+@include btn-base;
+background: transparent;
+color: $primary;
+border: 1.5px solid $primary;
+
+&:hover {
+  background: $primary-light;
+}
+}
+
+@mixin card {
+background: $white;
+border-radius: $radius-xl;
+border: 1px solid $border-light;
+overflow: hidden;
+transition: all 0.3s ease;
+
+&:hover {
+  box-shadow: $shadow-lg;
+  transform: translateY(-2px);
+}
+}
+
+@mixin badge {
+display: inline-flex;
+align-items: center;
+padding: $spacing-1 $spacing-3;
+font-size: $font-size-xs;
+font-weight: $font-weight-medium;
+border-radius: $radius-full;
+}
+
+@mixin section-header {
+text-align: center;
+margin-bottom: $spacing-12;
+
+.section-label {
+  @include badge;
+  background: $accent-light;
+  color: $accent;
+  margin-bottom: $spacing-4;
+  font-size: $font-size-sm;
+  padding: $spacing-2 $spacing-4;
+}
+
+h2 {
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: $spacing-4;
+  line-height: $line-height-tight;
+
+  span {
+    color: $primary;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+p {
+  font-size: $font-size-lg;
+  color: $text-secondary;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: $line-height-relaxed;
+}
+}
+
+@mixin scrollbar {
+&::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+&::-webkit-scrollbar-track {
+  background: $bg-light;
+  border-radius: $radius-full;
+}
+
+&::-webkit-scrollbar-thumb {
+  background: $border-color;
+  border-radius: $radius-full;
+
+  &:hover {
+    background: $text-muted;
+  }
+}
+}
+
+@mixin responsive-grid($cols-mobile: 1, $cols-tablet: 2, $cols-desktop: 3, $cols-wide: 4) {
+display: grid;
+gap: $spacing-6;
+grid-template-columns: repeat($cols-mobile, 1fr);
+
+@media (min-width: $breakpoint-sm) {
+  grid-template-columns: repeat($cols-tablet, 1fr);
+}
+
+@media (min-width: $breakpoint-lg) {
+  grid-template-columns: repeat($cols-desktop, 1fr);
+}
+
+@media (min-width: $breakpoint-xl) {
+  grid-template-columns: repeat($cols-wide, 1fr);
+}
+}
