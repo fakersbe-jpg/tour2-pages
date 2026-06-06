@@ -1,0 +1,61 @@
+@use 'styles/variables' as *;
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-top: 72px; // offset for fixed header
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid $border-color;
+    border-top-color: $primary;
+    border-radius: $radius-full;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: $spacing-8;
+  text-align: center;
+
+  .notFoundContent {
+    h1 {
+      font-size: 6rem;
+      font-weight: $font-weight-extrabold;
+      color: $primary;
+      line-height: 1;
+      margin-bottom: $spacing-4;
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $text-secondary;
+      margin-bottom: $spacing-8;
+    }
+
+    .homeLink {
+      @include styles.btn-primary;
+    }
+  }
+}
