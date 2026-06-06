@@ -1,0 +1,432 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page { background: $white; }
+
+.container { @include container; }
+
+.sectionLabel {
+display: inline-flex;
+align-items: center;
+padding: $spacing-1 $spacing-3;
+font-size: $font-size-sm;
+font-weight: $font-weight-medium;
+border-radius: $radius-full;
+background: $accent-light;
+color: $accent;
+margin-bottom: $spacing-4;
+font-size: $font-size-sm;
+padding: $spacing-2 $spacing-4;
+}
+
+// Hero
+.hero {
+position: relative;
+min-height: 38vh;
+background: $gradient-dark;
+@include flex(row, center, center);
+text-align: center;
+padding: $spacing-16 $container-padding;
+@media (max-width: $breakpoint-md) { min-height: 32vh; padding: $spacing-12 $container-padding; }
+}
+
+.heroContent { max-width: 640px; }
+
+.breadcrumbs {
+@include flex(row, center, center);
+gap: $spacing-2;
+font-size: $font-size-sm;
+color: rgba($white, 0.7);
+margin-bottom: $spacing-4;
+a { color: rgba($white, 0.7); text-decoration: none; &:hover { color: $white; } }
+}
+
+h1 {
+font-size: $font-size-5xl;
+font-weight: $font-weight-extrabold;
+color: $white;
+margin-bottom: $spacing-3;
+line-height: $line-height-tight;
+@media (max-width: $breakpoint-md) { font-size: $font-size-4xl; }
+}
+
+.heroTagline {
+font-size: $font-size-xl;
+color: rgba($white, 0.85);
+@media (max-width: $breakpoint-md) { font-size: $font-size-lg; }
+}
+
+// Info Cards
+.infoSection {
+padding: $spacing-12 0;
+background: $bg-light;
+
+@media (max-width: $breakpoint-md) { padding: $spacing-8 0; }
+}
+
+.infoGrid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: $spacing-5;
+
+@media (max-width: $breakpoint-lg) { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: $breakpoint-sm) { grid-template-columns: 1fr; }
+}
+
+.infoCard {
+text-align: center;
+padding: $spacing-6 $spacing-4;
+background: $white;
+border-radius: $radius-xl;
+border: 1px solid $border-light;
+transition: all 0.3s ease;
+
+&:hover {
+  box-shadow: $shadow-md;
+  transform: translateY(-2px);
+}
+
+h3 {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: $spacing-2;
+}
+
+p {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  line-height: $line-height-normal;
+}
+}
+
+.infoIcon {
+width: 52px;
+height: 52px;
+background: $primary-light;
+border-radius: $radius-xl;
+@include flex(row, center, center);
+margin: 0 auto $spacing-4;
+
+svg {
+  width: 24px;
+  height: 24px;
+  color: $primary;
+}
+}
+
+// Form Section
+.formSection {
+@include section-padding;
+}
+
+.formLayout {
+display: grid;
+grid-template-columns: 1.3fr 1fr;
+gap: $spacing-12;
+align-items: start;
+
+@media (max-width: $breakpoint-lg) { grid-template-columns: 1fr; }
+}
+
+.formBlock {
+h2 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: $spacing-3;
+
+  span { color: $primary; }
+
+  @media (max-width: $breakpoint-md) { font-size: $font-size-2xl; }
+}
+}
+
+.formSubtitle {
+font-size: $font-size-base;
+color: $text-secondary;
+line-height: $line-height-relaxed;
+margin-bottom: $spacing-8;
+max-width: 480px;
+}
+
+.form {
+@include flex(column, flex-start, stretch);
+gap: $spacing-5;
+}
+
+.formRow {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: $spacing-5;
+
+@media (max-width: $breakpoint-sm) { grid-template-columns: 1fr; }
+}
+
+.formGroup {
+@include flex(column, flex-start, stretch);
+gap: $spacing-2;
+
+label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+}
+
+input, select, textarea {
+  padding: $spacing-3 $spacing-4;
+  font-size: $font-size-base;
+  font-family: $font-family;
+  color: $text-primary;
+  background: $white;
+  border: 1.5px solid $border-color;
+  border-radius: $radius-lg;
+  transition: all 0.2s ease;
+  outline: none;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px $primary-light;
+  }
+
+  &::placeholder { color: $text-muted; }
+}
+
+select { cursor: pointer; }
+}
+
+.submitBtn {
+align-self: flex-start;
+padding: $spacing-3 $spacing-8;
+font-size: $font-size-base;
+font-weight: $font-weight-semibold;
+font-family: $font-family;
+border: none;
+border-radius: $radius-lg;
+background: $gradient-primary;
+color: $white;
+cursor: pointer;
+transition: all 0.2s ease;
+
+&:hover {
+  transform: translateY(-1px);
+  box-shadow: $shadow-md;
+}
+}
+
+// Success
+.successMessage {
+text-align: center;
+padding: $spacing-12 $spacing-6;
+background: $bg-light;
+border-radius: $radius-2xl;
+
+svg {
+  width: 56px;
+  height: 56px;
+  color: $primary;
+  margin-bottom: $spacing-4;
+}
+
+h3 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin-bottom: $spacing-2;
+}
+
+p {
+  font-size: $font-size-base;
+  color: $text-secondary;
+  margin-bottom: $spacing-6;
+}
+
+.resetBtn {
+  padding: $spacing-2 $spacing-6;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  background: $white;
+  border: 1.5px solid $border-color;
+  border-radius: $radius-lg;
+  color: $text-primary;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+  }
+}
+}
+
+// Map
+.mapBlock {
+position: sticky;
+top: 92px;
+}
+
+.mapPlaceholder {
+background: $bg-light;
+border-radius: $radius-2xl;
+border: 1px solid $border-light;
+padding: $spacing-10 $spacing-6;
+text-align: center;
+
+svg {
+  width: 64px;
+  height: 64px;
+  color: $primary;
+  opacity: 0.3;
+  margin-bottom: $spacing-4;
+}
+
+h3 {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  margin-bottom: $spacing-2;
+}
+
+p {
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  line-height: $line-height-normal;
+}
+
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  margin-top: $spacing-4;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $primary;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover { gap: $spacing-3; }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    opacity: 1;
+    margin: 0;
+  }
+}
+}
+
+// FAQ
+.faqSection {
+@include section-padding;
+background: $bg-light;
+}
+
+.faqTitle {
+font-size: $font-size-3xl;
+font-weight: $font-weight-bold;
+color: $text-primary;
+margin-bottom: $spacing-10;
+
+span { color: $primary; }
+
+@media (max-width: $breakpoint-md) { font-size: $font-size-2xl; }
+}
+
+.faqGrid {
+max-width: 720px;
+}
+
+.faqItem {
+border-bottom: 1px solid $border-color;
+
+&:first-child { border-top: 1px solid $border-color; }
+}
+
+.faqQuestion {
+width: 100%;
+@include flex(row, space-between, center);
+gap: $spacing-4;
+padding: $spacing-5 0;
+background: none;
+border: none;
+cursor: pointer;
+text-align: left;
+font-size: $font-size-base;
+font-weight: $font-weight-medium;
+color: $text-primary;
+font-family: $font-family;
+transition: color 0.2s ease;
+
+&:hover { color: $primary; }
+}
+
+.faqChevron {
+width: 20px;
+height: 20px;
+color: $text-secondary;
+flex-shrink: 0;
+transition: transform 0.3s ease;
+
+.faqOpen & {
+  transform: rotate(180deg);
+  color: $primary;
+}
+}
+
+.faqAnswer {
+overflow: hidden;
+transition: max-height 0.3s ease;
+
+p {
+  padding-bottom: $spacing-5;
+  font-size: $font-size-sm;
+  color: $text-secondary;
+  line-height: $line-height-relaxed;
+}
+}
+
+// CTA
+.ctaSection {
+@include section-padding;
+background: $gradient-dark;
+text-align: center;
+}
+
+.ctaContent {
+max-width: 600px;
+margin: 0 auto;
+
+h2 {
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: $white;
+  margin-bottom: $spacing-4;
+  span { color: $accent; }
+  @media (max-width: $breakpoint-md) { font-size: $font-size-3xl; }
+}
+
+p {
+  font-size: $font-size-lg;
+  color: rgba($white, 0.8);
+  margin-bottom: $spacing-8;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3 $spacing-8;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-lg;
+  background: $gradient-primary;
+  color: $white;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: $shadow-xl;
+  }
+}
+}
